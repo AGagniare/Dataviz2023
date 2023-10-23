@@ -159,7 +159,7 @@ source = ColumnDataSource(data=plans_in_vigour)
 
 # Create the Bokeh figure
 p = figure(x_range=plans_in_vigour['region'].tolist(), height=350, 
-           title="Number of Plans in Vigour by Region (using bokeh)",
+           title="Number of Plans in Vigour by Region ",
            toolbar_location=None, tools="")
 
 # Add a bar renderer
@@ -189,7 +189,7 @@ alt_chart = alt.Chart(avg_population).mark_bar().encode(
     color=alt.Color('region', legend=None),
     tooltip=['region', 'population']
 ).properties(
-    title='Average Population of Communes with SPRs by Region (using altair)'
+    title='Average Population of Communes with SPRs by Region '
 ).interactive()
 
 st.altair_chart(alt_chart, use_container_width=True)
