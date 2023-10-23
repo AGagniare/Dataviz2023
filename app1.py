@@ -212,7 +212,7 @@ heatmap_data = heatmap_data.pivot(index='region', columns='year', values='count'
 if st.checkbox('Show Heatmap of SPR Distribution Across Regions and Years'):
     st.write("Heatmap showing the count of SPRs across different regions and years.")
     plt.figure(figsize=(12, 8))
-    sns.heatmap(heatmap_data, annot=True, fmt=".0f", cmap='viridis', linewidths=.5)
+    fig, ax = sns.heatmap(heatmap_data, annot=True, fmt=".0f", cmap='viridis', linewidths=.5)
     st.pyplot(fig)
 
 #------------------------------
