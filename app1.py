@@ -42,12 +42,12 @@ spr_counts_by_year = spr_dates.dt.year.value_counts().sort_index()
 st.line_chart(spr_counts_by_year)
 
 # Bar chart: Number of SPRs by region
-st.subheader("Number of SPRs by Region")
+st.subheader("Number of Sites Patrimoniaux Remarquables (SPRs) by Region")
 spr_by_region = df['region'].value_counts()
 st.bar_chart(spr_by_region)
 
 # Scatter chart: Relationship between population and number of SPRs in a commune
-st.subheader("Relationship between Population and Number of SPRs in a Commune")
+st.subheader("Relationship between Population and Number of Sites Patrimoniaux Remarquables (SPRs) in a Commune")
 communes_grouped = df.groupby('commune').agg({'population':'mean', 'nombre_de_spr':'sum'}).dropna()
 st.scatter_chart(communes_grouped, x='population', y='nombre_de_spr')
 
