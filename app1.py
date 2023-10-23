@@ -215,37 +215,3 @@ if st.checkbox('Show Heatmap of SPR Distribution Across Regions and Years'):
     sns.heatmap(heatmap_data, annot=True, fmt=".0f", cmap='viridis', linewidths=.5)
     st.pyplot()
 
-#------------------------------
-
-# TODO: France Map heatmap (This will be added)
-
-
-import geopandas as gpd
-from mpl_toolkits.axes_grid1 import make_axes_locatable
-# Load the GeoJSON data of French departments from a URL
-url = "https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-version-simplifiee.geojson"
-gdf = gpd.read_file(url)
-
-# Count the SPR per department
-spr_per_department = df['departement'].value_counts().reset_index()
-spr_per_department.columns = ['departement', 'spr_count']
-
-# Merge the GeoDataFrame with the SPR count data on the department name
-merged = gdf.merge(spr_per_department, left_on='nom', right_on='departement', how='left')
-
-# Handle NaN values after the merge
-merged['spr_count'].fillna(0, inplace=True)
-
-# Plot the map
-fig, ax = plt.subplots(1, 1, figsize=(15, 10))
-
-# Plot the choropleth map with a specific color scale
-merged.plot(column='spr_count', ax=ax, legend=True, cmap='OrRd', edgecolor='k', linewidth=0.5,
-            legend_kwds={'label': "Number of SPRs by Department"},
-            vmin=1, vmax=1000)  # Set the scale of the heatmap here
-
-ax.set_axis_off()
-plt.title('Number of Sites Patrimoniaux Remarquables (SPR) by French Department')
-
-# Display the map in the Streamlit app
-st.pyplot(fig)
