@@ -36,7 +36,7 @@ st.sidebar.markdown(f"[View My LinkedIn Profile]({linkedin_url})")
 #------------------------------
 
 # Line chart: Number of SPRs across years of creation
-st.subheader("Number of Sites Patrimoniaux Remarquables (SPRs) Over Years")
+st.subheader("Number of Sites Patrimoniaux Remarquables (SPRs), added over Years")
 spr_dates = df['spr_initial_date_de_creation'].dropna().astype('datetime64[ns]')
 spr_counts_by_year = spr_dates.dt.year.value_counts().sort_index()
 st.line_chart(spr_counts_by_year)
