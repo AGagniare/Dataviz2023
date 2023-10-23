@@ -16,7 +16,7 @@ def load_data():
 df = load_data()
 
 # Title of the app
-st.title("A Journey Through France’s Cultural Heritage")
+st.title("A Journey Through France’s Cultural Heritage, Sites Patrimoniaux Remarquables")
 
 #------------------------------
 
