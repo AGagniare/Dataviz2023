@@ -96,7 +96,6 @@ if st.checkbox('Show Bar Plot'):
     st.pyplot(fig)
 
 # Scatter plot using Plotly
-st.subheader("Relationship Between Date of Creation and Number of Plans in Vigour")
 df['spr_initial_date_de_creation'] = pd.to_datetime(df['spr_initial_date_de_creation'], errors='coerce')
 ...
 
