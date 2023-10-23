@@ -72,12 +72,12 @@ if st.checkbox('Show Map Visualization'):
 # Function to plot top N communes with the most SPRs
 def plot_top_communes(n):
     top_communes = df.groupby('commune')['nombre_de_spr'].sum().sort_values(ascending=False).head(n)
-    plt.figure(figsize=(10, 5))
-    top_communes.plot(kind='bar', color='skyblue', edgecolor='black')
-    plt.title(f'Top {n} Communes with the Most SPRs')
-    plt.xlabel('Commune')
-    plt.ylabel('Number of SPRs')
-    st.pyplot()
+    fig, ax = plt.subplots(figsize=(10, 5))
+    top_communes.plot(kind='bar', color='skyblue', edgecolor='black', ax=ax)
+    ax.set_title(f'Top {n} Communes with the Most SPRs')
+    ax.set_xlabel('Commune')
+    ax.set_ylabel('Number of SPRs')
+    st.pyplot(fig)
 
 
 # Interactive element to choose the number of top communes to display
