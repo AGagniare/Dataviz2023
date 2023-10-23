@@ -84,16 +84,6 @@ def plot_top_communes(n):
 n = st.slider('Select the Number of Top Communes to Display', min_value=5, max_value=50, value=10)
 plot_top_communes(n)
 
-# Bar plot using Seaborn
-st.subheader("Average Population in Regions with SPRs")
-if st.checkbox('Show Bar Plot'):
-    fig, ax = plt.subplots(figsize=(10, 5))
-    average_population_by_region = df.groupby('region')['population'].mean().sort_values(ascending=False).reset_index()
-    sns.barplot(data=average_population_by_region, y='region', x='population', palette='viridis', ax=ax)
-    ax.set_xlabel('Average Population')
-    ax.set_ylabel('Region')
-    ax.set_title('Average Population in Regions with SPRs')
-    st.pyplot(fig)
 
 # Scatter plot using Plotly
 df['spr_initial_date_de_creation'] = pd.to_datetime(df['spr_initial_date_de_creation'], errors='coerce')
