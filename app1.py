@@ -127,14 +127,14 @@ st.write(f"Number of SPRs created up to {year_to_filter}: {len(filtered_data)}")
 
 # Visualize the filtered data with a bar chart
 if st.checkbox('Show Bar Chart of SPRs Created Each Year Up to Selected Year'):
-    plt.figure(figsize=(12, 6))
+    fig = plt.figure(figsize=(12, 6))
     filtered_counts_by_year = df.loc[df['spr_initial_date_de_creation'].dt.year <= year_to_filter,
                                      'spr_initial_date_de_creation'].dt.year.value_counts().sort_index()
     plt.bar(filtered_counts_by_year.index, filtered_counts_by_year.values, color='skyblue', edgecolor='black')
     plt.xlabel('Year')
     plt.ylabel('Count of SPRs Created')
     plt.title(f'Count of SPRs Created Each Year Up to {year_to_filter}')
-    st.pyplot()
+    st.pyplot(fig)
 
 # Select box to select and display data for a specific region
 selected_region = st.selectbox('Select a Region to Explore SPRs', df['region'].dropna().unique())
@@ -211,7 +211,7 @@ heatmap_data = heatmap_data.pivot(index='region', columns='year', values='count'
 # Create a heatmap visualization
 if st.checkbox('Show Heatmap of SPR Distribution Across Regions and Years'):
     st.write("Heatmap showing the count of SPRs across different regions and years.")
-    plt.figure(figsize=(12, 8))
+    fig = plt.figure(figsize=(12, 8))
     sns.heatmap(heatmap_data, annot=True, fmt=".0f", cmap='viridis', linewidths=.5)
-    st.pyplot()
+    st.pyplot(fig)
 
