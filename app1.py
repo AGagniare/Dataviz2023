@@ -97,7 +97,6 @@ if st.checkbox('Show Bar Plot'):
 
 # Scatter plot using Plotly
 df['spr_initial_date_de_creation'] = pd.to_datetime(df['spr_initial_date_de_creation'], errors='coerce')
-...
 
 # Bar Chart for Distribution of SPR Initial Regime of Creation using Altair
 st.subheader("Distribution of SPR Initial Regime of Creation")
