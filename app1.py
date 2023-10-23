@@ -143,38 +143,6 @@ st.write(region_data[['commune', 'nombre_de_spr', 'spr_initial_date_de_creation'
 
 #------------------------------
 
-from bokeh.plotting import figure
-from bokeh.models import ColumnDataSource
-from bokeh.transform import factor_cmap
-from bokeh.palettes import Spectral6
-
-# Load the dataset
-df = pd.read_csv('liste-des-sites-patrimoniaux-remarquables-spr.csv', delimiter=';')
-
-# Group the data by region and calculate the sum of plans in vigour
-plans_in_vigour = df.groupby('region')['nombre_de_plans_en_vigueur'].sum().reset_index()
-
-# Convert the data to ColumnDataSource
-source = ColumnDataSource(data=plans_in_vigour)
-
-# Create the Bokeh figure
-p = figure(x_range=plans_in_vigour['region'].tolist(), height=350, 
-           title="Number of Plans in Vigour by Region ",
-           toolbar_location=None, tools="")
-
-# Add a bar renderer
-p.vbar(x='region', top='nombre_de_plans_en_vigueur', width=0.9, source=source, legend_field="region",
-       line_color='white', fill_color=factor_cmap('region', palette=Spectral6, factors=plans_in_vigour['region'].tolist()))
-
-# Customize the plot
-p.xgrid.grid_line_color = None
-p.y_range.start = 0
-p.xaxis.axis_label = "Region"
-p.yaxis.axis_label = "Total Number of Plans in Vigour"
-p.xaxis.major_label_orientation = 1.2
-
-# Show the Bokeh plot
-st.bokeh_chart(p)
 
 
 #------------------------------
